@@ -19,7 +19,7 @@ def avgNewsSentiment(query, start, end, alexaMin):
 def getSentimentByDay(query, day):
     today = date.today()
     d0 = today - day
-    sentiment = avgNewsSentiment(query, d0.days+1, d0.days, 5000)
+    sentiment = avgNewsSentiment(query, d0.days+10, d0.days, 5000)
     print(sentiment)
     return sentiment
 
