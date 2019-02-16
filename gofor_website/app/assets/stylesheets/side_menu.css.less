@@ -1,0 +1,49 @@
+.side-menu {
+  width: inherit;
+  background-color: @dark_grey;
+  position: fixed;
+  height: 100%;
+  
+  .logo {
+    height: 70px;
+    background-color: @green;
+    img {
+      width: 40px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+      padding-top: 15px;
+    }
+  }
+
+  .main-menu {
+    #quote-form {
+      border-bottom: 1px solid @black;
+      margin-bottom: 15px;
+
+      .fa-search {
+        top: 23px;
+      }
+      .form-group {
+        margin: 0;
+
+        input {
+          text-indent: 26px;
+          height: 60px;
+        }
+      }
+    }
+
+    .menu-item {
+      font-size: 20px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      padding-left: 15px;
+
+      .active {
+        color: white;
+      }
+    }
+  }
+}
