@@ -33,7 +33,7 @@ model.compile(optimizer=tf.train.AdamOptimizer(),
               metrics=['accuracy'])
 
 # Directory where the checkpoints will be saved
-checkpoint_dir = 'E:\\Hackathon\\training_checkpoints'
+checkpoint_dir = 'D:\\training_checkpoints'
 # Name of the checkpoint files
 checkpoint_prefix = os.path.join(checkpoint_dir, "ckpt_{epoch}")
 
@@ -41,7 +41,7 @@ checkpoint_callback=tf.keras.callbacks.ModelCheckpoint(
     filepath=checkpoint_prefix,
     save_weights_only=True)
 
-model.fit(train_inputs, train_outputs, epochs=1000, callbacks=[checkpoint_callback])
+model.fit(train_inputs, train_outputs, epochs=50, callbacks=[checkpoint_callback])
 
 predictions = model.predict(train_inputs)
 
