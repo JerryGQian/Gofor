@@ -42,26 +42,23 @@ model.compile(optimizer=tf.train.AdamOptimizer(.00002),
               loss=tf.keras.losses.MeanSquaredError(),
               metrics=['accuracy'])
 
-predictions = model.predict(train_inputs)
+##model.fit(train_inputs, train_outputs, epochs=800, callbacks=[checkpoint_callback])
+tf.keras.models.save_model(model, 'model.h5', include_optimizer=False)
 
-print("actual")
-print(train_outputs)
-print("prediction")
-print(predictions)
+seshh = tf.keras.backend.get_session()
 
-test_loss, test_acc = model.evaluate(train_inputs, train_outputs)
+grappy = seshh.graph
+inno = grappy.get_tensor_by_name("dense_input:0")
+outo = grappy.get_tensor_by_name("dense_4/BiasAdd:0")
 
-print('\nPre-Update Test accuracy:', test_loss)
+tf.saved_model.simple_save(seshh, "E:\\SavedModel", inputs={"x": inno}, outputs={"y": outo})
+#with tf.keras.backend.get_session() as sess:
+	# `sess.graph` provides access to the graph used in a <a href="./../api_docs/python/tf/Session"><code>tf.Session</code></a>.
+#	writer = tf.summary.FileWriter("/tmp/log/thang.txt", sess.graph)
+#	model.fit(train_inputs, train_outputs, epochs=10, callbacks=[checkpoint_callback])
+#	writer.close()
 
-model.fit(train_inputs, train_outputs, epochs=10, callbacks=[checkpoint_callback])
 
-predictions = model.predict(train_inputs)
 
-print("actual")
-print(train_outputs)
-print("prediction")
-print(predictions)
 
-test_loss, test_acc = model.evaluate(train_inputs, train_outputs)
-
-print('\nPost-Update Test accuracy:', test_loss)
+#tf.print(tf.keras.backend.get_session())
