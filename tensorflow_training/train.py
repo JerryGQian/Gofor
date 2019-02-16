@@ -20,7 +20,8 @@ train_outputs = np.asarray(y)
 
 # our model
 model = keras.Sequential([
-    keras.layers.Dense(256, input_shape=(306,)),
+    keras.layers.Dense(256, input_shape=(303,)),
+    keras.layers.Dense(256),
     keras.layers.Dense(128),
     keras.layers.Dense(128),
     keras.layers.Dense(3)
@@ -41,7 +42,7 @@ checkpoint_callback=tf.keras.callbacks.ModelCheckpoint(
     filepath=checkpoint_prefix,
     save_weights_only=True)
 
-model.fit(train_inputs, train_outputs, epochs=1000, callbacks=[checkpoint_callback])
+model.fit(train_inputs, train_outputs, epochs=100, callbacks=[checkpoint_callback])
 
 predictions = model.predict(train_inputs)
 
@@ -50,4 +51,4 @@ print(predictions)
 
 test_loss, test_acc = model.evaluate(train_inputs, train_outputs)
 
-print('\nTest accuracy:', test_acc)
+print('\nTest accuracy:', test_loss)

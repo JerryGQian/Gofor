@@ -53,15 +53,5 @@ test_loss, test_acc = model.evaluate(train_inputs, train_outputs)
 
 print('\nPre-Update Test accuracy:', test_loss)
 
-model.fit(train_inputs, train_outputs, epochs=800, callbacks=[checkpoint_callback])
-
-predictions = model.predict(train_inputs)
-
-print("actual")
-print(train_outputs)
-print("prediction")
-print(predictions)
-
-test_loss, test_acc = model.evaluate(train_inputs, train_outputs)
-
-print('\nPost-Update Test accuracy:', test_loss)
+##model.fit(train_inputs, train_outputs, epochs=800, callbacks=[checkpoint_callback])
+tf.keras.models.save_model(model, 'model.h5', include_optimizer=False)
