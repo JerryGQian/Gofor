@@ -7,9 +7,12 @@ Companies to use with id:
 
 Input vector:
 0: Company id
-1-52: weekly stock data
-53-100: hourly data
-101: twitter bad
-102: twitter neutral
-103: twitter good
+1-300: daily stock data
+301: bad
+302: neutral
+303: good
+304: day#
+305: month#
 
+Output vector:
+0:
