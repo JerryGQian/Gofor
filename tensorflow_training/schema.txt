@@ -1,0 +1,15 @@
+Companies to use with id:
+0: google
+1: amazon
+2: apple
+3: facebook
+4: capital one
+
+Input vector:
+0: Company id
+1-52: weekly stock data
+53-100: hourly data
+101: twitter bad
+102: twitter neutral
+103: twitter good
+
