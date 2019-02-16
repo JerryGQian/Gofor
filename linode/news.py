@@ -2,6 +2,7 @@ import requests
 import json
 import numpy as np
 import datetime
+from datetime import date
 
 def avgNewsSentiment(query, start, end, alexaMin):
     (query, start, end, alexaMin) = (str(query), str(start), str(end), str(alexaMin))
@@ -14,4 +15,11 @@ def avgNewsSentiment(query, start, end, alexaMin):
     sentiment = [x / norm for x in sent_raw]
 
     return sentiment
-avgNewsSentiment('Apple Inc.', 5, 0, 5000)
+
+def getSentimentByDay(query, day):
+    today = date.today()
+    d0 = today - day
+    sentiment = avgNewsSentiment(query, d0.days+1, d0.days, 5000)
+    print(sentiment)
+    return sentiment
+
