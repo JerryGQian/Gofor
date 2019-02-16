@@ -3,7 +3,11 @@ from requests.exceptions import RequestException
 from contextlib import closing
 import json
 
-#INSTALL REQUESTS >> pip install requests BeautifulSoup4
+#INSTALL REQUESTS >> pip install requests
+#CONFIGURABLE ############################################
+company_id = 1
+symbol = "googl"
+##########################################################
 
 def simple_get(url):
     try:
@@ -13,17 +17,19 @@ def simple_get(url):
         print('Error during requests to {0} : {1}'.format(url, str(e)))
         return None
 
-url = "https://api.iextrading.com/1.0/stock/aapl/chart/5y"
+url = "https://api.iextrading.com/1.0/stock/" + symbol + "/chart/5y"
+
 json_string = simple_get(url)
 parsed_json = json.loads(json_string)
 
 def build_input_vector(day_to_predict):
 	vector = [0] * 306
+	vector[0] = company_id
 	for i in range(1, 301, 3):
-		day = day_to_predict - (int)((i + 3) / 3)
-		vector[i] = parsed_json[day]['low']
-		vector[i+1] = parsed_json[day]['high']
-		vector[i+2] = parsed_json[day]['close']
+		day = len(parsed_json)-1-day_to_predict - (int)((i + 3) / 3)
+		vector[301 - i] = parsed_json[day]['low']
+		vector[301 - (i+1)] = parsed_json[day]['high']
+		vector[301 - (i+2)] = parsed_json[day]['close']
 
 	#Mark data here
 	
