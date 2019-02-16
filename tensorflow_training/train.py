@@ -7,21 +7,26 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 #
-import stock_history_aggregate as trainer
+import generator
+import os
 
 print(tf.__version__)
 
 
-(train_inputs, train_outputs) = trainer.create()
+(x, y) = generator.create()
 
+train_inputs = np.asarray(x)
+train_outputs = np.asarray(y)
 
 # our model
 model = keras.Sequential([
-    keras.layers.Dense(256, activation=tf.nn.leaky_relu, input_shape=(305,)),
-    keras.layers.Dense(128, activation=tf.nn.relu),
-    keras.layers.Dense(128, activation=tf.nn.relu),
-    keras.layers.Dense(3, activation=tf.nn.relu)
+    keras.layers.Dense(256, input_shape=(306,)),
+    keras.layers.Dense(128),
+    keras.layers.Dense(128),
+    keras.layers.Dense(3)
 ])
+
+#model.load_weights(tf.train.latest_checkpoint(checkpoint_dir))
 
 model.compile(optimizer=tf.train.AdamOptimizer(), 
               loss=tf.keras.losses.MeanSquaredError(),
@@ -36,5 +41,13 @@ checkpoint_callback=tf.keras.callbacks.ModelCheckpoint(
     filepath=checkpoint_prefix,
     save_weights_only=True)
 
-model.fit(train_inputs, train_outputs, epochs=100, callbacks=[checkpoint_callback])
+model.fit(train_inputs, train_outputs, epochs=1000, callbacks=[checkpoint_callback])
 
+predictions = model.predict(train_inputs)
+
+print(train_outputs)
+print(predictions)
+
+test_loss, test_acc = model.evaluate(train_inputs, train_outputs)
+
+print('\nTest accuracy:', test_acc)
