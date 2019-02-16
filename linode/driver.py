@@ -10,7 +10,7 @@ def daterange(start_date, end_date):
         yield start_date + timedelta(n)
 
 companies = ['Facebook', 'Twitter', 'Netflix', 'Electronic Arts', 'Activision Blizzard',
-            '', ' Accenture Plc', 'Microsoft Corporation', 'Oracle Corporation', 'Adobe Inc']
+            'Tesla', 'AMD', 'Intel', 'IBM', 'Qualcomm']
 startDate = date(2015,12,1)
 endDate = date.today();
 

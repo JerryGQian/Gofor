@@ -13,18 +13,27 @@ def avgNewsSentiment(query, start, end, alexaMin):
     print(url)
     response = requests.get(url, headers=headers).json()
     sentiment = [-1, -1, -1]
-    if 'trends' in response:
-        response = response['trends']
-        sent_raw = [response[1]['count'], response[0]['count'], response[2]['count']]
-        norm = np.linalg.norm(sent_raw)
-        sentiment = [x / norm for x in sent_raw]
+    if 'trends' not in response:
+        for i in range(100):
+            time.sleep(1)
+            print('Retry')
+            response = requests.get(url, headers=headers).json()
+            if 'trends' in response:
+                break
+            elif i == 99:
+                return sentiment
+    
+    response = response['trends']
+    sent_raw = [response[1]['count'], response[0]['count'], response[2]['count']]
+    norm = np.linalg.norm(sent_raw)
+    sentiment = [x / norm for x in sent_raw]
     return sentiment
 
 def getSentimentByDay(query, day):
     today = date.today()
     d0 = today - day
-    if day.day >= 25:
-        time.sleep(1)
+    if day.day == 1:
+        time.sleep(5)
     sentiment = avgNewsSentiment(query, d0.days+5, d0.days, 5000)
     print(sentiment)
     return sentiment
