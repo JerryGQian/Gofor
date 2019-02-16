@@ -1,3 +1,4 @@
+import requests
 from requests import get
 from requests.exceptions import RequestException
 from contextlib import closing
@@ -44,6 +45,10 @@ def create():
 	for i in range(0, len(symbols)):
 		url = "https://api.iextrading.com/1.0/stock/" + symbols[i] + "/chart/5y"
 		json_string = simple_get(url)
+<<<<<<< HEAD
+=======
+		#print(str(requests.get(url).json()))
+>>>>>>> 8187927786ada26ebe2ef736f0865f6d6375ba2b
 		parsed_json = json.loads(json_string)
 
 		for day_to_predict in range(0, 1000):
