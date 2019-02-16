@@ -37,7 +37,7 @@ checkpoint_callback=tf.keras.callbacks.ModelCheckpoint(
 
 model.load_weights(tf.train.latest_checkpoint(checkpoint_dir))
 
-model.compile(optimizer=tf.train.AdamOptimizer(), 
+model.compile(optimizer=tf.train.AdamOptimizer(.00001), 
               loss=tf.keras.losses.MeanSquaredError(),
               metrics=['accuracy'])
 
@@ -50,7 +50,7 @@ test_loss, test_acc = model.evaluate(train_inputs, train_outputs)
 
 print('\nTest accuracy:', test_acc)
 
-model.fit(train_inputs, train_outputs, epochs=100, callbacks=[checkpoint_callback])
+model.fit(train_inputs, train_outputs, epochs=1000, callbacks=[checkpoint_callback])
 
 predictions = model.predict(train_inputs)
 
