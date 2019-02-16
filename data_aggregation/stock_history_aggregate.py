@@ -4,6 +4,10 @@ from contextlib import closing
 import json
 
 #INSTALL REQUESTS >> pip install requests
+#CONFIGURABLE ############################################
+company_id = 1
+symbol = "googl"
+##########################################################
 
 def simple_get(url):
     try:
@@ -13,12 +17,14 @@ def simple_get(url):
         print('Error during requests to {0} : {1}'.format(url, str(e)))
         return None
 
-url = "https://api.iextrading.com/1.0/stock/tsla/chart/5y"
+url = "https://api.iextrading.com/1.0/stock/" + symbol + "/chart/5y"
+
 json_string = simple_get(url)
 parsed_json = json.loads(json_string)
 
 def build_input_vector(day_to_predict):
 	vector = [0] * 306
+	vector[0] = company_id
 	for i in range(1, 301, 3):
 		day = len(parsed_json)-1-day_to_predict - (int)((i + 3) / 3)
 		vector[301 - i] = parsed_json[day]['low']
@@ -44,8 +50,8 @@ def create():
 	for day_to_predict in range(0, 1000):
 		input_vec = build_input_vector(day_to_predict)
 		output_vec = build_output_vector(day_to_predict)
-		print(input_vec)
-		print(output_vec)
+		#print(input_vec)
+		#print(output_vec)
 		input_vec_list.append(input_vec)
 		output_vec_list.append(output_vec)
 
