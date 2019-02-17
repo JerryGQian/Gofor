@@ -100,17 +100,22 @@ dataset = dataset.map(x => x.map(y => (isNaN(y) ? y : (1*y).toFixed(2))))
 dataset = dataset.map(x => x.map(y => ((typeof  y) == 'string' ? y.toUpperCase() : y)))
 
 	table = $('#table_id').DataTable({
-		dom: 'f',
+		dom: 'fl',
 		data: dataset,
 		columns: [
 			{title: 'symbol'},
 			{title: 'date'},
 			{title: 'low'},
 			{title: 'high'},
-			{title: 'close'},
+			{title: 'close'}
 		],
 	});
-	table1 = $('#news_table').DataTable({dom:'f'});
+	table1 = $('#news_table').DataTable({
+		dom:'',
+		columns: [
+			{title: 'time'},
+			{title: 'headline'},
+			{title: 'source'}]});
 	$('#table_id_filter input').removeClass('searchClass');
 	$('#table_id_filter input').addClass('mySearch');
 	$('#news_table_filter input').removeClass('searchClass');
@@ -119,7 +124,9 @@ dataset = dataset.map(x => x.map(y => ((typeof  y) == 'string' ? y.toUpperCase()
 	$('#table_id tbody').on('click', 'tr', function () {
 			$('#news div').hide();
         var data = table.row( this ).data();
+        table1.ajax.url('http://jmeth-dot-gopher-231919.appspot.com/news?symb='+data[0]).load();
         var comp_div = $('#'+data[0]);
+        table1.draw();
         comp_div.show();
         $('#wrap').show();
     } );
