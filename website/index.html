@@ -6,31 +6,52 @@
 
 		<meta charset="utf-8">
   		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://jquery-3.3.1.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 		
-    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    	
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 
-		<link rel="stylesheet" type="text/css" href="css/style.css">
+		
 
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
   
 		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+		<script type="text/javascript" src="./js/table.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="css/style.css">
 
 	</head>
 
-	<body class="body center">
+
+	<div class=".container-fluid center">
 		<div class="title">
+			<img src="./img/gofor_512x1024.png" alt="goforlogo" width=8% height=15%>
 			gofor analytics
 		</div>
+	</div>
 
-		<div class="body">
-			This is body text! This is body text! This is body text!
+	<body class="body center">
+		<br>
+		<div class="paragraph">
+			Gofor is a service that uses the power of machine learning to predict future stock prices. Below is a table of predictions for the next trading day.
 		</div> 
+		<br>
+		<form action="/action_page.php">
+		  Receive SMS notifications<br>
+		  <input class="inputform" type="text" name="phonenumber" value="">
+		 
+		  <input class="button" type="submit" value=">">
+		</form>
 
-		<table id="table_id" class="display table">
+	</body>
+
+	<table id="table_id" class="display hover stripe">
 		    <thead> 
 		    	
 		        <tr>
@@ -46,7 +67,7 @@
 		            <td>GOOGL</td>
 		            <td>2131232</td>
 		            <td>100</td>
-		            <td>120</td>
+		            <td>123</td>
 		            <td>110</td>
 		        </tr>
 		        <tr>
@@ -66,24 +87,65 @@
 		        <tr>
 		            <td>MSFT</td>
 		            <td>12321312321312</td>
-		            <td>100</td>
-		            <td>120</td>
 		            <td>110</td>
+		            <td>130</td>
+		            <td>115</td>
 		        </tr>
 		    </tbody>
 		</table>
 
+		<br><br><br>
 
-		<div class="wrapper">
-			<nav>
-				<ul>
-					<a href="http://goforanalyics.com">goforanalyics.com</a>
-				</ul>
-			</nav>
-		
-
+	<div id='news'>
+		<div id = 'AAPL' style="display:none">
+			Apple News
+			<table id="table_id1" class="display hover stripe">
+		    <thead> 
+		        <tr>
+		            <th>Time</th>
+		            <th>Headline</th>
+		            <th>Source</th>
+		            <th>URL</th>
+		            <th>...</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <tr>
+		            <td>2019-02-16T16:09:00-05:00</td>
+		            <td><a href="https://api.iextrading.com/1.0/stock/aapl/article/7896890836508972">Apple hires an ex-Microsoft exec to revamp its smart home business, and catch up to Google, Amazon</a></td>
+		            <td>CNBC</td>
+		            <td>...</td>
+		            <td>...</td>
+		        </tr>
+		        <tr>
+		            <td>2019-02-16T12:41:00-05:00</td>
+		            <td><a href="https://api.iextrading.com/1.0/stock/aapl/article/7585152817837861">I was spending $132 a month on digital subscriptions - here's how I cut it back</a></td>
+		            <td>CNBC</td>
+		            <td>...</td>
+		            <td>110</td>
+		        </tr>
+		        <tr>
+		            <td>2019-02-16T12:02:00-05:00</td>
+		            <td><a href="https://api.iextrading.com/1.0/stock/aapl/article/7585152817837861">Controversy, dissent and baggage are good for your stock portfolio</a></td>
+		            <td>CNBC</td>
+		            <td>...</td>
+		            <td>110</td>
+		        </tr>
+		    </tbody>
+		</table>
 		</div>
 
-	</body>
+		<div id = 'AMZN' style="display:none">
+			Amazon
+		</div>
+
+		<div id = 'GOOGL' style="display:none">
+			Google
+		</div>
+
+		<div id = 'MSFT' style="display:none">
+			Microsoft
+		</div>
+	</div>
 	
 </html>
