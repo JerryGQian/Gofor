@@ -12,7 +12,7 @@ def sms_ahoy_reply():
     resp = MessagingResponse()
 
     # Add a message
-    resp.message("Ahoy! Thanks so much for your message.")
+    resp.message("Hello! Meet the Gofor Analytics chat bot! Gofor is a service that uses the power of machine learning to predict future stock prices. Give me the name of a company to find their prospective stock prices.""")
 
     return str(resp)
 
