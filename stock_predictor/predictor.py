@@ -36,3 +36,5 @@ def predict_stock(data):
         raise RuntimeError(response['error'])
 
     return response['predictions'][0]['y']
+
+#predict_stock([0, 1, 2 , 4, 45,6, 7])
