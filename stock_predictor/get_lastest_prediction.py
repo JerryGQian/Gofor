@@ -3,11 +3,11 @@ from requests.exceptions import RequestException
 from contextlib import closing
 import json
 import predictor
+import datetime
 
 #INSTALL REQUESTS >> pip install requests
 
 #CONFIGURABLE ############################################
-idx = 0
 symbols = ["googl", "goog", "qcom", "aapl", "amzn", "msft", "fb", "twtr", "nflx", "tsla", "cof", "orcl", "adbe", "amd", "nvda", "intc" ]
 ##########################################################
 
@@ -35,15 +35,34 @@ def build_input_vector(day_to_predict, parsed_json, company_id):
 
 
 def create():
-	url = "https://api.iextrading.com/1.0/stock/" + symbols[idx] + "/chart/5y"
-	json_string = simple_get(url)
-	parsed_json = json.loads(json_string)
+	prediction_vec_list = []
 
-	input_vec = build_input_vector(3, parsed_json, idx)
+	url1 = "https://api.iextrading.com/1.0/stock/" + symbols[0] + "/chart/5y"
+	json_string1 = simple_get(url1)
+	parsed_json1 = json.loads(json_string1)
 
-	prediction_vec = predictor.predict_stock(input_vec)
-	print(prediction_vec)
+	date_string = parsed_json1[len(parsed_json1)-1]['date']
+	lastday = datetime.datetime(int(date_string[0:4]), int(date_string[5:7]), int(date_string[8:10]))
+	prediction_day = datetime.datetime(int(date_string[0:4]), int(date_string[5:7]), int(date_string[8:10])) 
+	
+	if lastday.weekday() >= 4 and lastday.weekday() <= 6:
+		prediction_day += datetime.timedelta(days=(7 - lastday.weekday()))  
+	
+	prediction_day_string = str(prediction_day.month) + "-" + str(prediction_day.day) + "-" + str(prediction_day.year)
 
-	return prediction_vec
+	for i in range(0, len(symbols)):
+		url = "https://api.iextrading.com/1.0/stock/" + symbols[i] + "/chart/5y"
+		json_string = simple_get(url)
+		parsed_json = json.loads(json_string)
+
+		input_vec = build_input_vector(0, parsed_json, i)
+		prediction_vec = predictor.predict_stock(input_vec)
+
+		predictionary = {"symbol": symbols[i], "date": prediction_day_string, "low": prediction_vec[0], "high": prediction_vec[1], "close": prediction_vec[2], }
+		prediction_vec_list.append(predictionary)
+	
+	#print(json.dumps(prediction_vec_list))
+
+	return json.dumps(prediction_vec_list)
 
 create()
