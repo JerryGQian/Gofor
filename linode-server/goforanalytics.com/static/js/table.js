@@ -97,6 +97,7 @@ dataset = [[
 ]];
 
 dataset = dataset.map(x => x.map(y => (isNaN(y) ? y : (1*y).toFixed(2))))
+dataset = dataset.map(x => x.map(y => ((typeof  y) == 'string' ? y.toUpperCase() : y)))
 
 	table = $('#table_id').DataTable({
 		dom: 'f',
