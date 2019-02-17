@@ -1,9 +1,13 @@
 from requests import get
 from requests.exceptions import RequestException
 from contextlib import closing
+import requests
 import json
 import datetime
-
+import bs4
+from google.cloud import language
+from google.cloud.language import enums
+from google.cloud.language import types
 
 #INSTALL REQUESTS >> pip install requests
 #CONFIGURABLE ############################################
@@ -37,9 +41,9 @@ def build_vector(parsed_json):
 		vector[0] += str(days) + "d "
 	if hours != 0:
 		vector[0] += str(hours) + "h "
-	if minutes != 0:
+	elif minutes != 0:
 		vector[0] += str(minutes) + "m "
-	if seconds != 0:
+	elif seconds != 0:
 		vector[0] += str(seconds) + "s "
 
 	vector[0] += "ago"
@@ -47,6 +51,30 @@ def build_vector(parsed_json):
 	vector[1] = parsed_json[0]['headline']
 	vector[2] = parsed_json[0]['url']
 	vector[3] = parsed_json[0]['source']
+
+	
+	page = requests.get(vector[2]) 
+	soup = bs4.BeautifulSoup(page.content, 'html.parser')
+	article = ""
+	for s in soup.find_all('p'):
+		article += s.get_text()
+	print(article)
+
+	# Instantiates a client
+	client = language.LanguageServiceClient()
+
+	# The text to analyze
+	text = u'Hello, world!'
+	document = types.Document(content=text, type=enums.Document.Type.PLAIN_TEXT)
+
+	# Detects the sentiment of the text
+	sentiment = client.analyze_sentiment(document=document).document_sentiment
+
+	print('Text: {}'.format(text))
+	print('Sentiment: {}, {}'.format(sentiment.score, sentiment.magnitude))
+
+
+
 
 	return vector
 
@@ -63,4 +91,4 @@ def create(symbol):
 
 	return json.dumps(json_list)
 
-#create("aapl")
+create("aapl")
