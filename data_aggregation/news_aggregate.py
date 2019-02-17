@@ -12,13 +12,6 @@ symbols = ["googl", "qcom", "aapl", "amzn", "msft", "fb", "twtr", "nflx", "tsla"
 '''
 2019-02-16 22:37:14.354720
 2019-02-16 22:37:14.658937
-2019-02-16 22:37:17.845163
-2019-02-16 22:37:18.021085
-2019-02-16 22:37:18.282451
-2019-02-16 22:37:18.456986
-2019-02-16 22:37:18.653458
-2019-02-16 22:37:18.856914
-2019-02-16 22:37:19.095312
 '''
 def simple_get(url):
     try:
@@ -28,36 +21,46 @@ def simple_get(url):
         print('Error during requests to {0} : {1}'.format(url, str(e)))
         return None
 
-def build_input_vector(parsed_json):
+def build_vector(parsed_json):
 	vector = [0] * 4
 
 	currentDT = datetime.datetime.now()
-	newsDT = parsed_json[0]['datetime']
-	diff_hour = currentDT.hour - (int)(newsDT[11:13])
-	diff_minute = currentDT.minute - (int)(newsDT[14:16])
-	if diff_hour == 0:
-		vector[0] = str(diff_minute) + "s ago"
-	else:
-		vector[0] = str(diff_hour) + "h " + str(diff_minute) + "s ago"
+	newsDT_string = parsed_json[0]['datetime']
+	newsDT = datetime.datetime(int(newsDT_string[0:4]), int(newsDT_string[5:7]), int(newsDT_string[8:10]), int(newsDT_string[11:13]), int(newsDT_string[14:16]), 0, 1)
+	diffDT = currentDT - newsDT
+	days = diffDT.days
+	hours, remainder = divmod(diffDT.seconds, 3600)
+	minutes, seconds = divmod(remainder, 60)
+	
+	vector[0] = ""
+	if days != 0:
+		vector[0] += str(days) + "d "
+	if hours != 0:
+		vector[0] += str(hours) + "h "
+	if minutes != 0:
+		vector[0] += str(minutes) + "m "
+	if seconds != 0:
+		vector[0] += str(seconds) + "s "
+
+	vector[0] += "ago"
+
 	vector[1] = parsed_json[0]['headline']
-	vector[2] = parsed_json[0]['source']
-	vector[3] = parsed_json[0]['url']
+	vector[2] = parsed_json[0]['url']
+	vector[3] = parsed_json[0]['source']
 
 	return vector
 
-def create():
-	company_news_vec_list = []
+def create(symbol):
+	url = "https://api.iextrading.com/1.0/stock/" + symbol + "/news"
+	json_string = simple_get(url)
+	parsed_json = json.loads(json_string)
 
-	for i in range(0, len(symbols)):
-		url = "https://api.iextrading.com/1.0/stock/" + symbols[i] + "/news"
-		json_string = simple_get(url)
-		parsed_json = json.loads(json_string)
+	vec = build_vector(parsed_json)
+	dictionary = {"time": vec[0], "headline": vec[1], "url": vec[2], "source": vec[3]}
+	json_list = [dictionary]
 
-		
-		vec = build_input_vector(parsed_json)
-		company_news_vec_list.append(vec)
-	print(company_news_vec_list)
+	#print(json.dumps(json_list))
 
-	return company_news_vec_list
+	return json.dumps(json_list)
 
-create()
+#create("aapl")
