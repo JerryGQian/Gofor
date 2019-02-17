@@ -5,9 +5,8 @@ import json
 from oauth2client.client import GoogleCredentials
 from googleapiclient import discovery
 
-import generator as gen
-
-def predict_json(project, model, instances, version=None):
+#Based on google example
+def predict_stock(data):
     """Send json data to a deployed model for prediction.
 
     Args:
@@ -26,28 +25,14 @@ def predict_json(project, model, instances, version=None):
     # To authenticate set the environment variable
     # GOOGLE_APPLICATION_CREDENTIALS=<path_to_service_account_file>
     service = discovery.build('ml', 'v1')
-    name = 'projects/{}/models/{}'.format(project, model)
-
-    if version is not None:
-        name += '/versions/{}'.format(version)
+    name = 'projects/gopher-231919/models/stockpredict'
 
     response = service.projects().predict(
         name=name,
-        body={'instances': instances}
+        body={'instances': {"x": data}}
     ).execute()
 
     if 'error' in response:
         raise RuntimeError(response['error'])
 
-    return response['predictions']
-
-(input_vals, output_vals) = gen.create()
-
-first = input_vals[0]
-first_result = output_vals[0]
-
-predicto = predict_json("gopher-231919", "stockpredict", {"x": first})
-
-print(first)
-print(first_result)
-print(predicto)
+    return response['predictions'][0]['y']
