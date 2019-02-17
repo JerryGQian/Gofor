@@ -7,7 +7,7 @@ $(document).ready(function(){
 	$('#table_id tbody').on('click', 'tr', function () {
 		$('#news div').hide();
         var data = table.row( this ).data();
-        var comp_div = $('#'+data);
+        var comp_div = $('#'+data[0]);
         comp_div.show();
     } );
 });
