@@ -6,7 +6,7 @@
 
 		<meta charset="utf-8">
   		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<script src="https://jquery-3.3.1.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 		
@@ -197,40 +197,6 @@
 
 		<div id = 'AAPL' style="display:none">
 			<h1> Apple News </h1>
-			<table id="table_id1" class="display hover stripe">
-		    <thead> 
-		        <tr>
-		            <th>Time</th>
-		            <th>Headline</th>
-		            <th>Source</th>
-		            <th>URL</th>
-		            <th>...</th>
-		        </tr>
-		    </thead>
-		    <tbody>
-		        <tr>
-		            <td>2019-02-16T16:09:00-05:00</td>
-		            <td><a href="https://api.iextrading.com/1.0/stock/aapl/article/7896890836508972" target="_blank">Apple hires an ex-Microsoft exec to revamp its smart home business, and catch up to Google, Amazon</a></td>
-		            <td>CNBC</td>
-		            <td>...</td>
-		            <td>...</td>
-		        </tr>
-		        <tr>
-		            <td>2019-02-16T12:41:00-05:00</td>
-		            <td><a href="https://api.iextrading.com/1.0/stock/aapl/article/7585152817837861" target="_blank">I was spending $132 a month on digital subscriptions - here's how I cut it back</a></td>
-		            <td>CNBC</td>
-		            <td>...</td>
-		            <td>110</td>
-		        </tr>
-		        <tr>
-		            <td>2019-02-16T12:02:00-05:00</td>
-		            <td><a href="https://api.iextrading.com/1.0/stock/aapl/article/8977064173917636" target="_blank">Controversy, dissent and baggage are good for your stock portfolio</a></td>
-		            <td>CNBC</td>
-		            <td>...</td>
-		            <td>110</td>
-		        </tr>
-		    </tbody>
-		</table>
 		</div>
 
 		<div id = 'AMZN' style="display:none">
@@ -280,6 +246,21 @@
 		<div id = 'INTC' style="display:none">
 			<h1> Nintendo News </h1>
 		</div>
+		<div id='wrap' style='display:none'>
+			<table id="news_table" class="hover stripe">
+		    <thead> 
+		        <tr>
+		            <th>Time</th>
+		            <th>Headline</th>
+		            <th>Source</th>
+		            <th>URL</th>
+		            <th>...</th>
+		        </tr>
+		    </thead>
+		</table>
+
+		</div>
+		
 
 
 	</div>
