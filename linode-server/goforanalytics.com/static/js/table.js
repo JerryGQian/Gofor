@@ -1,5 +1,18 @@
 $(document).ready(function(){
-	table = $('#table_id').DataTable({dom:'fl'});
+	table = $('#table_id').DataTable({
+		dom: 'fp',
+		columns: [
+			{name: 'symbol'},
+			{name: 'date'},
+			{name: 'low'},
+			{name: 'high'},
+			{name: 'close'},
+		],
+		ajax : {
+			url : 'http://services.goforanalytics.com/predictions',
+			type: 'get',
+		}
+	});
 	table1 = $('#news_table').DataTable({dom:'f'});
 	$('#table_id_filter input').removeClass('searchClass');
 	$('#table_id_filter input').addClass('mySearch');
@@ -13,7 +26,5 @@ $(document).ready(function(){
         comp_div.show();
         $('#wrap').show();
     } );
-
-
 });
 

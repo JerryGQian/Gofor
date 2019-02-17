@@ -1,4 +1,8 @@
-
+.rect {
+  height: 4px;
+  width: 60px;
+  background-color: #232624;
+}
 
 @font-face {
  font-family:'DIN Pro';
