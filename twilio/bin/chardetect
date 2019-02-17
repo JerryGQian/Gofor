@@ -1,4 +1,4 @@
-#!/Users/justinle/VSCodeProjects/Gofor/twilio/bin/python3.7
+#!/Users/justinle/VSCodeProjects/Gofor/twilio/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
