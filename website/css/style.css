@@ -170,3 +170,12 @@ input.mySearch {
   position:absolute;  // absolutely positioned
   top: 50%;
 }
+
+a {
+  color: white;
+  align-items: left;
+
+  a:hover {
+  color: green;
+}
+}
