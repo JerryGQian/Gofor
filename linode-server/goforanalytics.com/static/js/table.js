@@ -96,6 +96,8 @@ dataset = [[
 	"50.30323791503906"
 ]];
 
+dataset = dataset.map(x => x.map(y => (isNaN(y) ? y : (1*y).toFixed(2))))
+
 	table = $('#table_id').DataTable({
 		dom: 'f',
 		data: dataset,
