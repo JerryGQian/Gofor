@@ -1,8 +1,4 @@
-.rect {
-  height: 4px;
-  width: 60px;
-  background-color: #232624;
-}
+
 
 @font-face {
  font-family:'DIN Pro';
@@ -88,7 +84,7 @@ body {
 
 .center{
   margin: auto;
-  width: 70%;
+  width: 80%;
   text-align: center;
 }
 
