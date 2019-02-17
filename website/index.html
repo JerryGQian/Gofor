@@ -39,7 +39,7 @@
 	<body class="body center">
 		<br>
 		<div class="paragraph">
-			Gofor is a service that uses the power of machine learning to predict future stock prices. Below is a table of predictions for the next trading day.
+			Gofor is a service that uses the power of machine learning to predict future stock prices. Below is a table of predictions for the next trading day. Click each stock to see its recent news. Also try out our SMS chatbot!
 		</div> 
 		<br>
 		<form action="/action_page.php">
@@ -56,40 +56,124 @@
 		    	
 		        <tr>
 		            <th>Symbol</th>
-		            <th>Date</th>
+		            <th>Prediction Date</th>
 		            <th>Low</th>
 		            <th>High</th>
 		            <th>Close</th>
 		        </tr>
-		    </thead>
+		    </thead>  
 		    <tbody>
 		        <tr>
 		            <td>GOOGL</td>
-		            <td>2131232</td>
-		            <td>100</td>
-		            <td>123</td>
-		            <td>110</td>
+		            <td>2-16-2019</td>
+		            <td>$1120.44</td>
+		            <td>$1142.92</td>
+		            <td>$1134.35</td>
+		        </tr>
+		        <tr>
+		            <td>GOOG</td>
+		            <td>2-16-2019</td>
+		            <td>$1120.44</td>
+		            <td>$1142.92</td>
+		            <td>$1134.35</td>
+		        </tr>
+		        <tr>
+		            <td>QCOM</td>
+		            <td>2-16-2019</td>
+		            <td>$1120.44</td>
+		            <td>$1142.92</td>
+		            <td>$1134.35</td>
 		        </tr>
 		        <tr>
 		            <td>AAPL</td>
-		            <td>12321312321312</td>
+		            <td>2-16-2019</td>
 		            <td>100</td>
 		            <td>120</td>
 		            <td>110</td>
 		        </tr>
 		        <tr>
 		            <td>AMZN</td>
-		            <td>12321312321312</td>
+		            <td>2-16-2019</td>
 		            <td>100</td>
 		            <td>120</td>
 		            <td>110</td>
 		        </tr>
 		        <tr>
 		            <td>MSFT</td>
-		            <td>12321312321312</td>
+		            <td>2-16-2019</td>
 		            <td>110</td>
 		            <td>130</td>
 		            <td>115</td>
+		        </tr>
+		        <tr>
+		            <td>FB</td>
+		            <td>2-16-2019</td>
+		            <td>$1120.44</td>
+		            <td>$1142.92</td>
+		            <td>$1134.35</td>
+		        </tr>
+		        <tr>
+		            <td>TWTR</td>
+		            <td>2-16-2019</td>
+		            <td>$1120.44</td>
+		            <td>$1142.92</td>
+		            <td>$1134.35</td>
+		        </tr>
+		        <tr>
+		            <td>NFLX</td>
+		            <td>2-16-2019</td>
+		            <td>$1120.44</td>
+		            <td>$1142.92</td>
+		            <td>$1134.35</td>
+		        </tr>
+		        <tr>
+		            <td>TSLA</td>
+		            <td>2-16-2019</td>
+		            <td>$1120.44</td>
+		            <td>$1142.92</td>
+		            <td>$1134.35</td>
+		        </tr>
+		        <tr>
+		            <td>COF</td>
+		            <td>2-16-2019</td>
+		            <td>$1120.44</td>
+		            <td>$1142.92</td>
+		            <td>$1134.35</td>
+		        </tr>
+		        <tr>
+		            <td>ORCL</td>
+		            <td>2-16-2019</td>
+		            <td>$1120.44</td>
+		            <td>$1142.92</td>
+		            <td>$1134.35</td>
+		        </tr>
+		        <tr>
+		            <td>ADBE</td>
+		            <td>2-16-2019</td>
+		            <td>$1120.44</td>
+		            <td>$1142.92</td>
+		            <td>$1134.35</td>
+		        </tr>
+		        <tr>
+		            <td>AMD</td>
+		            <td>2-16-2019</td>
+		            <td>$1120.44</td>
+		            <td>$1142.92</td>
+		            <td>$1134.35</td>
+		        </tr>
+		        <tr>
+		            <td>NVDA</td>
+		            <td>2-16-2019</td>
+		            <td>$1120.44</td>
+		            <td>$1142.92</td>
+		            <td>$1134.35</td>
+		        </tr>
+		        <tr>
+		            <td>INTC</td>
+		            <td>2-16-2019</td>
+		            <td>$1120.44</td>
+		            <td>$1142.92</td>
+		            <td>$1134.35</td>
 		        </tr>
 		    </tbody>
 		</table>
@@ -97,8 +181,20 @@
 		<br><br><br>
 
 	<div id='news'>
+		<div id = 'GOOGL' style="display:none">
+			<h1> Google News </h1>
+		</div>
+
+		<div id = 'GOOG' style="display:none">
+			<h1> Google News </h1>
+		</div>
+
+		<div id = 'QCOM' style="display:none">
+			<h1> Qualcom News </h1>
+		</div>
+
 		<div id = 'AAPL' style="display:none">
-			Apple News
+			<h1> Apple News </h1>
 			<table id="table_id1" class="display hover stripe">
 		    <thead> 
 		        <tr>
@@ -112,21 +208,21 @@
 		    <tbody>
 		        <tr>
 		            <td>2019-02-16T16:09:00-05:00</td>
-		            <td><a href="https://api.iextrading.com/1.0/stock/aapl/article/7896890836508972">Apple hires an ex-Microsoft exec to revamp its smart home business, and catch up to Google, Amazon</a></td>
+		            <td><a href="https://api.iextrading.com/1.0/stock/aapl/article/7896890836508972" target="_blank">Apple hires an ex-Microsoft exec to revamp its smart home business, and catch up to Google, Amazon</a></td>
 		            <td>CNBC</td>
 		            <td>...</td>
 		            <td>...</td>
 		        </tr>
 		        <tr>
 		            <td>2019-02-16T12:41:00-05:00</td>
-		            <td><a href="https://api.iextrading.com/1.0/stock/aapl/article/7585152817837861">I was spending $132 a month on digital subscriptions - here's how I cut it back</a></td>
+		            <td><a href="https://api.iextrading.com/1.0/stock/aapl/article/7585152817837861" target="_blank">I was spending $132 a month on digital subscriptions - here's how I cut it back</a></td>
 		            <td>CNBC</td>
 		            <td>...</td>
 		            <td>110</td>
 		        </tr>
 		        <tr>
 		            <td>2019-02-16T12:02:00-05:00</td>
-		            <td><a href="https://api.iextrading.com/1.0/stock/aapl/article/7585152817837861">Controversy, dissent and baggage are good for your stock portfolio</a></td>
+		            <td><a href="https://api.iextrading.com/1.0/stock/aapl/article/8977064173917636" target="_blank">Controversy, dissent and baggage are good for your stock portfolio</a></td>
 		            <td>CNBC</td>
 		            <td>...</td>
 		            <td>110</td>
@@ -136,16 +232,56 @@
 		</div>
 
 		<div id = 'AMZN' style="display:none">
-			Amazon
-		</div>
-
-		<div id = 'GOOGL' style="display:none">
-			Google
+			<h1> Amazon News </h1>
 		</div>
 
 		<div id = 'MSFT' style="display:none">
-			Microsoft
+			<h1> Microsoft News </h1>
 		</div>
+
+		<div id = 'FB' style="display:none">
+			<h1> Facebook News </h1>
+		</div>
+
+		<div id = 'TWTR' style="display:none">
+			<h1> Twitter News </h1>
+		</div>
+
+		<div id = 'NFLX' style="display:none">
+			<h1> Netflix News </h1>
+		</div>
+
+		<div id = 'TSLA' style="display:none">
+			<h1> Tesla News </h1>
+		</div>
+
+		<div id = 'COF' style="display:none">
+			<h1> Capital One News </h1>
+		</div>
+
+		<div id = 'ORCL' style="display:none">
+			<h1> Oracle News </h1>
+		</div>
+
+		<div id = 'ADBE' style="display:none">
+			<h1> Adobe News </h1>
+		</div>
+
+		<div id = 'AMD' style="display:none">
+			<h1> AMD News </h1>
+		</div>
+
+		<div id = 'NVDA' style="display:none">
+			<h1> Nvidia News </h1>
+		</div>
+
+		<div id = 'INTC' style="display:none">
+			<h1> Nintendo News </h1>
+		</div>
+
+
 	</div>
+
+	<br><br><br>
 	
 </html>

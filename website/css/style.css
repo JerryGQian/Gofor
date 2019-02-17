@@ -88,24 +88,39 @@ body {
   text-align: center;
 }
 
+table.dataTable thead th,
+table.dataTable thead td {
+  padding: 10px 18px;
+  border-bottom: 12px solid #22d69f;
+}
+
 table.dataTable.no-footer {
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid #fff;
+  border-top: 0px solid #fff;
+  border-bottom: 0px solid #fff;
+}
+
+table.dataTable.cell-border tbody th, table.dataTable.cell-border tbody td {
+  border-top: 0px;
+  border-right: 0px;
+}
+
+table.dataTable.display tbody td {
+  border: none;
 }
 
 table.dataTable.display tbody tr.odd > .sorting_1, table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
-    background-color: #25eaae;
+    background-color: #23dcac;
 }
 table.dataTable.display tbody tr.even > .sorting_1, table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
-    background-color: #22d69f;
+    background-color: #20c89d;
 }
 
 
 table.dataTable.display tbody tr.odd {
     font-size: 20px;
     background-color: #25eaae;
-}
 
+}
 table.dataTable.display tbody tr.even {
     font-size: 20px;
     background-color: #22d69f;
@@ -118,8 +133,8 @@ select {
     align-items: center;
     white-space: pre;
     -webkit-rtl-ordering: logical;
-    color: black;
-    background-color: black;
+    color: white;
+    background-color: #21ffbb;
     cursor: default;
     border-width: 1px;
     border-style: solid;
@@ -174,8 +189,10 @@ input.mySearch {
 a {
   color: white;
   align-items: left;
-
-  a:hover {
-  color: green;
+  text-align: left;
+  float: left;
 }
+
+a:hover {
+  color: #c4ffee;
 }
